@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Studio Premium • Pátio Milano • Florianópolis</title>
+<meta name="description" content="Studio Premium no Pátio Milano, coração de Florianópolis. Isolamento acústico, garagem privativa, piscina e acesso direto à Mercadoteca. Superhost Airbnb nota 4,99."/>
+<meta name="keywords" content="studio pátio milano florianópolis, airbnb centro florianópolis, studio premium florianópolis, mercadoteca florianópolis, beira-mar norte florianópolis"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#fdf8e7;
+  --surface:#faf3d6;
+  --surface2:#f5ecbf;
+  --teal:#7b1c3e;
+  --teal2:#5e1530;
+  --coral:#9e2a4a;
+  --yellow:#c8a96e;
+  --text:#2a1018;
+  --muted:#7a5a62;
+  --border:rgba(123,28,62,0.12);
+  --grad: linear-gradient(135deg,#7b1c3e 0%,#9e2a4a 50%,#5e1530 100%);
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CURSOR */
+.cursor{
+  position:fixed;width:12px;height:12px;
+  background:var(--teal);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.1s,width 0.3s,height 0.3s,background 0.3s;
+  mix-blend-mode:difference;
+}
+.cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1px solid var(--teal);border-radius:50%;
+  pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform 0.15s ease-out,width 0.3s,height 0.3s,border-color 0.3s;
+  opacity:0.5;
+}
+body:hover .cursor{opacity:1}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.2rem 3rem;
+  background:rgba(253,248,231,0.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.4rem;letter-spacing:0.1em;
+  color:var(--text);text-decoration:none;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.nav-logo .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--teal);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(123,28,62,0.4)}
+  50%{box-shadow:0 0 0 8px rgba(123,28,62,0)}
+}
+.nav-links{display:flex;align-items:center;gap:2.5rem}
+.nav-links a{
+  font-size:0.75rem;font-weight:600;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--muted);
+  text-decoration:none;transition:color 0.3s;
+}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{
+  background:var(--teal);color:#fdf8e7;
+  padding:0.65rem 1.6rem;font-size:0.73rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  text-decoration:none;border-radius:2px;
+  transition:background 0.3s,transform 0.2s;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.nav-cta:hover{background:var(--teal2);transform:translateY(-1px)}
+
+/* HERO */
+.hero{
+  min-height:100vh;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 0 5rem;
+  padding-top:80px;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%,rgba(123,28,62,0.1) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 80%,rgba(158,42,74,0.07) 0%,transparent 60%),
+    var(--bg);
+}
+/* Animated grid */
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--border) 1px,transparent 1px),
+    linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:60px 60px;
+  animation:gridMove 20s linear infinite;
+  opacity:0.5;
+}
+@keyframes gridMove{
+  from{transform:translateY(0)}
+  to{transform:translateY(60px)}
+}
+
+.hero-content{
+  position:relative;z-index:2;
+  padding:0 4rem;
+  display:grid;grid-template-columns:1fr 420px;
+  gap:4rem;align-items:flex-end;
+}
+
+.hero-eyebrow{
+  display:flex;align-items:center;gap:0.8rem;
+  font-size:0.72rem;font-weight:600;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--teal);
+  margin-bottom:1.5rem;
+  opacity:0;animation:slideRight 0.8s ease 0.2s forwards;
+}
+.hero-eyebrow::before{
+  content:'';display:block;
+  width:2.5rem;height:2px;
+  background:var(--grad);
+}
+
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,8vw,8rem);
+  line-height:0.9;letter-spacing:0.02em;
+  margin-bottom:1.5rem;
+  opacity:0;animation:slideUp 0.9s ease 0.3s forwards;
+}
+.hero-title .outline{
+  -webkit-text-stroke:2px var(--teal);
+  color:transparent;
+}
+.hero-title .fill{color:var(--text)}
+.hero-title .accent{
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+.hero-desc{
+  font-size:1rem;font-weight:300;line-height:1.8;
+  color:var(--muted);max-width:500px;margin-bottom:2.5rem;
+  opacity:0;animation:slideUp 0.9s ease 0.45s forwards;
+}
+
+.hero-tags{
+  display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:2.5rem;
+  opacity:0;animation:slideUp 0.9s ease 0.55s forwards;
+}
+.tag{
+  padding:0.45rem 1rem;font-size:0.7rem;font-weight:600;
+  letter-spacing:0.1em;text-transform:uppercase;
+  border:1px solid var(--border);color:var(--muted);
+  border-radius:100px;transition:all 0.3s;
+}
+.tag:hover,.tag.active{
+  border-color:var(--teal);color:var(--teal);
+  background:rgba(123,28,62,0.06);
+}
+.tag.hot{border-color:var(--coral);color:var(--coral);background:rgba(158,42,74,0.06)}
+
+.hero-cta{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  opacity:0;animation:slideUp 0.9s ease 0.65s forwards;
+}
+.btn-glow{
+  background:var(--teal);color:#fdf8e7;
+  padding:1rem 2.5rem;font-size:0.8rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  text-decoration:none;border-radius:2px;
+  box-shadow:0 0 30px rgba(123,28,62,0.25);
+  transition:all 0.3s;
+  display:flex;align-items:center;gap:0.6rem;
+}
+.btn-glow:hover{
+  background:var(--teal2);
+  box-shadow:0 0 50px rgba(123,28,62,0.4);
+  transform:translateY(-2px);
+}
+.btn-ghost{
+  background:transparent;color:var(--text);
+  padding:1rem 2.5rem;font-size:0.8rem;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;
+  text-decoration:none;border:1px solid var(--border);
+  border-radius:2px;transition:all 0.3s;
+}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+/* Hero card */
+.hero-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:4px;padding:2.5rem;
+  opacity:0;animation:slideLeft 0.9s ease 0.5s forwards;
+  position:relative;overflow:hidden;
+}
+.hero-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--grad);
+}
+.rating-display{
+  display:flex;align-items:flex-end;gap:1rem;margin-bottom:2rem;
+}
+.rating-number{
+  font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.rating-info .stars{color:var(--teal);font-size:1.1rem;letter-spacing:0.1em}
+.rating-info .count{font-size:0.72rem;color:var(--muted);margin-top:0.3rem;letter-spacing:0.08em}
+.top5{
+  background:rgba(123,28,62,0.06);border:1px solid rgba(123,28,62,0.15);
+  border-radius:2px;padding:0.5rem 1rem;margin-bottom:2rem;
+  display:flex;align-items:center;gap:0.6rem;
+}
+.top5 .badge-text{font-size:0.72rem;font-weight:600;color:var(--teal);letter-spacing:0.1em}
+.card-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--border)}
+.card-stat{
+  padding:1.2rem 0 0;text-align:center;
+  border-right:1px solid var(--border);
+}
+.card-stat:last-child{border-right:none}
+.card-stat .val{
+  font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--text);
+}
+.card-stat .lbl{font-size:0.62rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem}
+
+/* Scroll indicator */
+.scroll-ind{
+  position:relative;z-index:2;
+  display:flex;align-items:center;gap:1rem;
+  padding:3rem 4rem 0;
+  opacity:0;animation:fadeIn 1s ease 1s forwards;
+  color:var(--muted);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;
+}
+.scroll-line{width:3rem;height:1px;background:var(--border)}
+.scroll-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--teal);
+  animation:bounce 2s infinite;
+}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* ── MARQUEE ── */
+.marquee-wrap{
+  background:var(--teal);padding:0.9rem 0;overflow:hidden;
+  display:flex;
+}
+.marquee-track{
+  display:flex;gap:0;
+  animation:marquee 20s linear infinite;
+  white-space:nowrap;
+}
+.marquee-item{
+  font-family:'Bebas Neue',sans-serif;font-size:1rem;
+  letter-spacing:0.15em;color:#fdf8e7;
+  padding:0 2.5rem;display:flex;align-items:center;gap:2rem;
+}
+.marquee-item::after{content:'✦';font-size:0.7rem}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── FOTOS ── */
+.photos-section{padding:7rem 4rem;background:var(--bg)}
+.photos-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:3rem;
+}
+.section-eyebrow{
+  font-size:0.7rem;font-weight:600;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--teal);margin-bottom:0.8rem;
+  display:flex;align-items:center;gap:0.7rem;
+}
+.section-eyebrow span{
+  width:2rem;height:2px;background:var(--teal);display:inline-block;
+}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,4vw,4rem);
+  line-height:0.95;letter-spacing:0.03em;
+}
+.section-title .teal{color:var(--teal)}
+.section-title .coral{color:var(--coral)}
+
+.photos-bento{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr;
+  grid-template-rows:280px 200px;
+  gap:0.6rem;
+}
+.photo-cell{
+  position:relative;overflow:hidden;background:var(--surface2);
+  border-radius:3px;
+}
+.photo-cell:first-child{grid-row:1/3}
+.photo-cell img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+  display:block;
+}
+.photo-cell:hover img{transform:scale(1.08)}
+.photo-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 50%);
+  opacity:0;transition:opacity 0.4s;
+  display:flex;align-items:flex-end;padding:1.2rem;
+}
+.photo-cell:hover .photo-overlay{opacity:1}
+.photo-label{
+  font-size:0.7rem;font-weight:600;letter-spacing:0.15em;
+  text-transform:uppercase;color:var(--teal);
+}
+.photo-ph{
+  width:100%;height:100%;
+  background:linear-gradient(135deg,var(--surface) 0%,var(--surface2) 100%);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:0.5rem;
+}
+.photo-ph .ico{font-size:2.5rem;opacity:0.25}
+.photo-ph .txt{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)}
+
+/* ── FEATURES ── */
+.features-section{
+  padding:7rem 4rem;background:var(--surface);
+  position:relative;overflow:hidden;
+}
+.features-section::before{
+  content:'';position:absolute;
+  top:-200px;right:-200px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(123,28,62,0.05) 0%,transparent 70%);
+}
+.features-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;margin-top:4rem;
+}
+.feature-card{
+  padding:2.5rem 2rem;border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+  transition:background 0.3s;
+  cursor:default;
+}
+.feature-card:nth-child(4n){border-right:none}
+.feature-card:nth-child(n+5){border-bottom:none}
+.feature-card::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:2px;
+  background:var(--grad);transform:scaleX(0);
+  transition:transform 0.4s;
+  transform-origin:left;
+}
+.feature-card:hover::after{transform:scaleX(1)}
+.feature-card:hover{background:rgba(0,229,200,0.02)}
+.feature-icon{
+  font-size:2rem;margin-bottom:1.2rem;
+  display:block;
+}
+.feature-name{
+  font-size:0.9rem;font-weight:600;color:var(--text);
+  margin-bottom:0.4rem;
+}
+.feature-desc{font-size:0.78rem;color:var(--muted);line-height:1.6}
+.feature-badge{
+  display:inline-block;margin-top:0.8rem;
+  font-size:0.62rem;font-weight:600;letter-spacing:0.12em;
+  text-transform:uppercase;padding:0.25rem 0.6rem;
+  border-radius:100px;
+}
+.feature-badge.teal{background:rgba(123,28,62,0.08);color:var(--teal)}
+.feature-badge.coral{background:rgba(158,42,74,0.08);color:var(--coral)}
+.feature-badge.yellow{background:rgba(200,169,110,0.15);color:#8a6a20}
+
+/* ── REVIEWS ── */
+.reviews-section{padding:7rem 4rem;background:var(--bg)}
+.reviews-top{
+  display:grid;grid-template-columns:300px 1fr;
+  gap:4rem;margin-bottom:4rem;align-items:center;
+}
+.rating-block{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:4px;padding:2.5rem;position:relative;overflow:hidden;
+  text-align:center;
+}
+.rating-block::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--grad);
+}
+.r-big{
+  font-family:'Bebas Neue',sans-serif;font-size:6rem;line-height:1;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.r-stars{color:var(--teal);font-size:1.3rem;margin:0.4rem 0}
+.r-count{font-size:0.72rem;color:var(--muted);letter-spacing:0.1em}
+.r-top5{
+  margin-top:1.2rem;padding:0.6rem 1rem;
+  background:rgba(123,28,62,0.06);border:1px solid rgba(123,28,62,0.15);
+  border-radius:2px;font-size:0.7rem;font-weight:700;
+  color:var(--teal);letter-spacing:0.12em;text-transform:uppercase;
+}
+
+.bars-block{display:flex;flex-direction:column;gap:1rem}
+.bar-row{display:flex;align-items:center;gap:1.2rem}
+.b-lbl{font-size:0.78rem;color:var(--muted);width:150px;flex-shrink:0}
+.b-track{
+  flex:1;height:3px;
+  background:var(--surface2);border-radius:100px;overflow:hidden;
+}
+.b-fill{
+  height:100%;border-radius:100px;
+  background:var(--grad);
+  transition:width 1.5s cubic-bezier(0.16,1,0.3,1);
+}
+.b-score{font-size:0.82rem;font-weight:600;color:var(--text);width:2.5rem;text-align:right}
+
+.reviews-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.rv-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:4px;padding:2rem;
+  transition:all 0.35s;position:relative;overflow:hidden;
+}
+.rv-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--grad);transform:scaleX(0);
+  transition:transform 0.4s;transform-origin:left;
+}
+.rv-card:hover::before{transform:scaleX(1)}
+.rv-card:hover{
+  border-color:rgba(0,229,200,0.2);
+  transform:translateY(-4px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+.rv-stars{color:var(--teal);font-size:0.85rem;margin-bottom:1rem;letter-spacing:0.05em}
+.rv-quote{
+  font-size:0.95rem;font-weight:300;font-style:italic;
+  line-height:1.75;color:var(--text);margin-bottom:1.5rem;
+}
+.rv-author{display:flex;align-items:center;gap:0.8rem}
+.rv-avatar{
+  width:2.2rem;height:2.2rem;border-radius:50%;
+  background:var(--grad);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;font-weight:700;color:#fdf8e7;flex-shrink:0;
+}
+.rv-name{font-size:0.8rem;font-weight:600;color:var(--text)}
+.rv-city{font-size:0.7rem;color:var(--muted);margin-top:0.1rem}
+
+/* ── SUPERHOST ── */
+.sh-section{
+  padding:7rem 4rem;background:var(--surface);
+  position:relative;overflow:hidden;
+}
+.sh-section::after{
+  content:'SUPERHOST';
+  position:absolute;right:-2rem;top:50%;transform:translateY(-50%) rotate(90deg);
+  font-family:'Bebas Neue',sans-serif;font-size:8rem;
+  color:rgba(0,229,200,0.03);letter-spacing:0.1em;pointer-events:none;
+  white-space:nowrap;
+}
+.sh-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.sh-left{}
+.sh-right{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);
+}
+.sh-metric{
+  background:var(--surface);padding:2.5rem 2rem;
+  position:relative;overflow:hidden;
+}
+.sh-metric:hover{background:var(--surface2)}
+.sh-metric .val{
+  font-family:'Bebas Neue',sans-serif;font-size:3rem;
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  line-height:1;
+}
+.sh-metric .lbl{font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.4rem}
+
+/* ── MAPA ── */
+.map-section{padding:7rem 4rem;background:var(--bg)}
+.map-layout{display:grid;grid-template-columns:1fr 340px;gap:2rem;margin-top:4rem}
+.map-frame{
+  border:1px solid var(--border);border-radius:4px;
+  overflow:hidden;position:relative;height:460px;
+}
+.map-frame iframe{width:100%;height:100%;border:none;filter:sepia(0.2) saturate(0.8)}
+.map-sidebar{display:flex;flex-direction:column;gap:1rem}
+.poi-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:4px;padding:1.5rem;
+  display:flex;align-items:center;gap:1.2rem;
+  transition:all 0.3s;
+}
+.poi-card:hover{border-color:var(--teal);transform:translateX(-4px)}
+.poi-icon{
+  width:3rem;height:3rem;background:rgba(123,28,62,0.07);
+  border:1px solid rgba(123,28,62,0.15);border-radius:3px;
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+  flex-shrink:0;
+}
+.poi-name{font-size:0.85rem;font-weight:600;color:var(--text)}
+.poi-dist{font-size:0.72rem;color:var(--teal);margin-top:0.2rem;font-weight:600}
+
+/* ── CTA ── */
+.cta-section{
+  padding:9rem 4rem;
+  background:var(--bg);
+  position:relative;overflow:hidden;text-align:center;
+}
+.cta-glow{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(123,28,62,0.1) 0%,transparent 70%);
+  pointer-events:none;
+}
+.cta-eyebrow{
+  font-size:0.7rem;font-weight:600;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--teal);margin-bottom:1.5rem;
+}
+.cta-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.5rem,7vw,7rem);line-height:0.9;
+  letter-spacing:0.03em;margin-bottom:2rem;
+  position:relative;
+}
+.cta-title .outline{
+  -webkit-text-stroke:2px rgba(255,255,255,0.2);color:transparent;
+}
+.cta-title .teal-grad{
+  background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.cta-sub{font-size:0.95rem;color:var(--muted);margin-bottom:3rem;position:relative}
+.cta-actions{display:flex;justify-content:center;gap:1rem;position:relative}
+
+/* FOOTER */
+footer{
+  background:var(--surface);border-top:1px solid var(--border);
+  padding:2.5rem 4rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.f-logo{
+  font-family:'Bebas Neue',sans-serif;font-size:1.2rem;
+  letter-spacing:0.1em;color:var(--muted);
+}
+.f-logo .t{color:var(--teal)}
+.f-copy{font-size:0.7rem;color:var(--muted);letter-spacing:0.08em}
+.f-link{
+  font-size:0.7rem;font-weight:600;color:var(--muted);text-decoration:none;
+  letter-spacing:0.12em;text-transform:uppercase;
+  transition:color 0.3s;
+}
+.f-link:hover{color:var(--teal)}
+
+/* ANIMATIONS */
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes slideRight{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:none}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.reveal{
+  opacity:0;transform:translateY(28px);
+  transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.vis{opacity:1;transform:none}
+.reveal-left{
+  opacity:0;transform:translateX(-28px);
+  transition:opacity 0.75s cubic-bezier(0.16,1,0.3,1),transform 0.75s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal-left.vis{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:1.2rem 1.5rem}
+  .nav-links{display:none}
+  .hero-content{grid-template-columns:1fr;padding:0 1.5rem}
+  .hero-card{display:none}
+  .scroll-ind{padding:2rem 1.5rem 0}
+  .photos-section,.features-section,.reviews-section,.sh-section,.map-section,.cta-section{padding:5rem 1.5rem}
+  .photos-bento{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .photo-cell:first-child{grid-row:auto}
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+  .feature-card:nth-child(2n){border-right:none}
+  .reviews-top{grid-template-columns:1fr}
+  .reviews-cards{grid-template-columns:1fr}
+  .sh-inner{grid-template-columns:1fr}
+  .sh-right{grid-template-columns:repeat(2,1fr)}
+  .map-layout{grid-template-columns:1fr}
+  .map-frame{height:300px}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <span class="dot"></span>PÁTIO MILANO
+  </a>
+  <div class="nav-links">
+    <a href="#fotos">Espaço</a>
+    <a href="#avaliacoes">Avaliações</a>
+    <a href="#localizacao">Localização</a>
+  </div>
+  <a class="nav-cta" href="https://www.airbnb.com.br/rooms/42202316" target="_blank" rel="noopener">
+    ↗ Reservar
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow"><span></span>Studio Premium · Centro · Florianópolis/SC</div>
+      <h1 class="hero-title">
+        <span class="fill">ACORDE</span><br>
+        <span class="outline">NO CENTRO</span><br>
+        <span class="accent">DE FLORIPA</span>
+      </h1>
+      <p class="hero-desc">
+        Studio com isolamento acústico e garagem privativa no Pátio Milano —
+        a 5 minutos da Beira-Mar Norte, com acesso direto à Mercadoteca.
+      </p>
+      <div class="hero-tags">
+        <span class="tag hot">⭐ Top 5% Airbnb</span>
+        <span class="tag active">Superhost</span>
+        <span class="tag">Isolamento Acústico</span>
+        <span class="tag">Garagem Privativa</span>
+        <span class="tag">Piscina</span>
+        <span class="tag">Mercadoteca</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn-glow" href="https://www.airbnb.com.br/rooms/42202316" target="_blank" rel="noopener">↗ Ver disponibilidade no Airbnb</a>
+        <a class="btn-ghost" href="#fotos">Explorar o espaço</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="rating-display">
+        <div class="rating-number">4,99</div>
+        <div class="rating-info">
+          <div class="stars">★★★★★</div>
+          <div class="count">110 avaliações verificadas</div>
+        </div>
+      </div>
+      <div class="top5">
+        <span>🏆</span>
+        <span class="badge-text">Top 5% das acomodações Airbnb</span>
+      </div>
+      <div class="card-stats">
+        <div class="card-stat"><div class="val">8</div><div class="lbl">Anos Superhost</div></div>
+        <div class="card-stat"><div class="val">99%</div><div class="lbl">5 Estrelas</div></div>
+        <div class="card-stat"><div class="val">5,0</div><div class="lbl">Limpeza</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-ind">
+    <div class="scroll-line"></div>
+    <div class="scroll-dot"></div>
+    <span>Scroll para explorar</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Studio Premium</span>
+    <span class="marquee-item">Top 5% Airbnb</span>
+    <span class="marquee-item">Superhost</span>
+    <span class="marquee-item">Pátio Milano</span>
+    <span class="marquee-item">Florianópolis</span>
+    <span class="marquee-item">Nota 4,99</span>
+    <span class="marquee-item">Garagem Privativa</span>
+    <span class="marquee-item">Mercadoteca</span>
+    <span class="marquee-item">Beira-Mar Norte</span>
+    <span class="marquee-item">Studio Premium</span>
+    <span class="marquee-item">Top 5% Airbnb</span>
+    <span class="marquee-item">Superhost</span>
+    <span class="marquee-item">Pátio Milano</span>
+    <span class="marquee-item">Florianópolis</span>
+    <span class="marquee-item">Nota 4,99</span>
+    <span class="marquee-item">Garagem Privativa</span>
+    <span class="marquee-item">Mercadoteca</span>
+    <span class="marquee-item">Beira-Mar Norte</span>
+  </div>
+</div>
+
+<!-- FOTOS -->
+<section class="photos-section" id="fotos">
+  <div class="photos-header reveal">
+    <div>
+      <div class="section-eyebrow"><span></span>O Espaço</div>
+      <h2 class="section-title">CONFORTO<br><span class="teal">PREMIUM</span></h2>
+    </div>
+    <p style="max-width:380px;font-size:0.92rem;font-weight:300;line-height:1.8;color:var(--muted)">
+      Janelas com isolamento acústico, cortina blackout, ar-condicionado split,
+      cama queen e lava e seca no próprio apartamento.
+    </p>
+  </div>
+  <div class="photos-bento">
+    <div class="photo-cell">
+      <img src="foto-sala.jpg" alt="Sala e quarto integrados - Studio Premium Pátio Milano Florianópolis" style="width:100%;height:100%;object-fit:cover;display:block"/>
+      <div class="photo-overlay"><span class="photo-label">Quarto & Sala</span></div>
+    </div>
+    <div class="photo-cell">
+      <img src="foto-cozinha.jpg" alt="Cozinha gourmet - Studio Premium Pátio Milano" style="width:100%;height:100%;object-fit:cover;display:block"/>
+      <div class="photo-overlay"><span class="photo-label">Cozinha Gourmet</span></div>
+    </div>
+    <div class="photo-cell">
+      <img src="foto-banheiro.jpg" alt="Banheiro - Studio Premium Pátio Milano" style="width:100%;height:100%;object-fit:cover;display:block"/>
+      <div class="photo-overlay"><span class="photo-label">Banheiro</span></div>
+    </div>
+    <div class="photo-cell">
+      <img src="foto-piscina.jpg" alt="Piscina do condomínio Pátio Milano Florianópolis" style="width:100%;height:100%;object-fit:cover;display:block"/>
+      <div class="photo-overlay"><span class="photo-label">Piscina</span></div>
+    </div>
+    <div class="photo-cell">
+      <img src="foto-fachada.jpg" alt="Fachada Pátio Milano Centro Florianópolis" style="width:100%;height:100%;object-fit:cover;display:block"/>
+      <div class="photo-overlay"><span class="photo-label">Pátio Milano</span></div>
+    </div>
+  </div>
+
+  <!-- GALERIA EXTRA — Condomínio & Apartamento -->
+  <div style="margin-top:0.6rem;display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;" class="reveal">
+    <div class="photo-cell" style="height:220px">
+      <img src="foto-sala2.jpg" alt="Sala integrada com cozinha - Studio Premium Pátio Milano" style="width:100%;height:100%;object-fit:cover;display:block"/>
+      <div class="photo-overlay"><span class="photo-label">Sala Integrada</span></div>
+    </div>
+    <div class="photo-cell" style="height:220px">
+      <img src="foto-lavanderia.jpg" alt="Lavanderia com lava e seca - Studio Premium Pátio Milano" style="width:100%;height:100%;object-fit:cover;display:block"/>
+      <div class="photo-overlay"><span class="photo-label">Lava e Seca</span></div>
+    </div>
+    <div class="photo-cell" style="height:220px">
+      <img src="foto-academia.jpg" alt="Academia completa 24h - Condomínio Pátio Milano Florianópolis" style="width:100%;height:100%;object-fit:cover;display:block"/>
+      <div class="photo-overlay"><span class="photo-label">Academia 24h</span></div>
+    </div>
+  </div>
+  <div style="margin-top:0.6rem;display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;" class="reveal">
+    <div class="photo-cell" style="height:280px">
+      <img src="foto-lazer.jpg" alt="Área de lazer com jardim e fogueira - Pátio Milano Florianópolis" style="width:100%;height:100%;object-fit:cover;display:block"/>
+      <div class="photo-overlay"><span class="photo-label">Área de Lazer</span></div>
+    </div>
+    <div class="photo-cell" style="height:280px">
+      <img src="foto-sportsbar.jpg" alt="Sports Bar com sinuca e bar - Pátio Milano Florianópolis" style="width:100%;height:100%;object-fit:cover;display:block"/>
+      <div class="photo-overlay"><span class="photo-label">Sports Bar</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="reveal">
+    <div class="section-eyebrow"><span></span>Comodidades</div>
+    <h2 class="section-title">TUDO QUE <span class="teal">VOCÊ PRECISA</span></h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <span class="feature-icon">🔇</span>
+      <div class="feature-name">Isolamento Acústico</div>
+      <div class="feature-desc">Janelas especiais que bloqueiam o ruído do centro. Dorme em paz mesmo no coração da cidade.</div>
+      <span class="feature-badge coral">Exclusivo</span>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">🚗</span>
+      <div class="feature-name">Garagem Privativa</div>
+      <div class="feature-desc">Vaga coberta individual no próprio prédio. Sem estresse com estacionamento no centro.</div>
+      <span class="feature-badge teal">Inclusa</span>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">🌑</span>
+      <div class="feature-name">Cortina Blackout</div>
+      <div class="feature-desc">Escuridão total quando você precisar descansar, independente do horário.</div>
+      <span class="feature-badge teal">Conforto</span>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">❄️</span>
+      <div class="feature-name">Ar-condicionado Split</div>
+      <div class="feature-desc">Quente e frio. Controle total da temperatura em qualquer época do ano.</div>
+      <span class="feature-badge yellow">Premium</span>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">🏊</span>
+      <div class="feature-name">Piscina</div>
+      <div class="feature-desc">Área de lazer completa do Pátio Milano disponível para os hóspedes.</div>
+      <span class="feature-badge teal">Condomínio</span>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">🍽️</span>
+      <div class="feature-name">Mercadoteca</div>
+      <div class="feature-desc">Food hall com +20 restaurantes, bares, cafés e música ao vivo. Acesso direto pelo prédio.</div>
+      <span class="feature-badge coral">Destaque</span>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">🏋️</span>
+      <div class="feature-name">Academia 24h</div>
+      <div class="feature-desc">Musculação, cardio e área de alongamento disponíveis a qualquer hora.</div>
+      <span class="feature-badge teal">Condomínio</span>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">👆</span>
+      <div class="feature-name">Acesso por Biometria</div>
+      <div class="feature-desc">Segurança máxima com biometria no prédio e nas áreas comuns. Cadastro rápido no check-in.</div>
+      <span class="feature-badge yellow">Segurança</span>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="avaliacoes">
+  <div class="reveal">
+    <div class="section-eyebrow"><span></span>Avaliações</div>
+    <h2 class="section-title">O QUE DIZEM<br><span class="coral">OS HÓSPEDES</span></h2>
+  </div>
+  <div class="reviews-top">
+    <div class="rating-block reveal">
+      <div class="r-big">4,99</div>
+      <div class="r-stars">★★★★★</div>
+      <div class="r-count">110 avaliações · 99% com 5 estrelas</div>
+      <div class="r-top5">🏆 Top 5% Global Airbnb</div>
+    </div>
+    <div class="bars-block reveal">
+      <div class="bar-row"><span class="b-lbl">Limpeza</span><div class="b-track"><div class="b-fill" style="width:100%"></div></div><span class="b-score">5,0</span></div>
+      <div class="bar-row"><span class="b-lbl">Exatidão</span><div class="b-track"><div class="b-fill" style="width:100%"></div></div><span class="b-score">5,0</span></div>
+      <div class="bar-row"><span class="b-lbl">Comunicação</span><div class="b-track"><div class="b-fill" style="width:100%"></div></div><span class="b-score">5,0</span></div>
+      <div class="bar-row"><span class="b-lbl">Localização</span><div class="b-track"><div class="b-fill" style="width:100%"></div></div><span class="b-score">5,0</span></div>
+      <div class="bar-row"><span class="b-lbl">Check-in</span><div class="b-track"><div class="b-fill" style="width:98%"></div></div><span class="b-score">4,9</span></div>
+      <div class="bar-row"><span class="b-lbl">Custo-benefício</span><div class="b-track"><div class="b-fill" style="width:98%"></div></div><span class="b-score">4,9</span></div>
+    </div>
+  </div>
+  <div class="reviews-cards">
+    <div class="rv-card reveal">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-quote">"Excelente apartamento, muito bem localizado e com boa infraestrutura no prédio. Mobiliário de boa qualidade e possui todos os utensílios para a estadia. Anexo ao prédio há uma praça de alimentação com diversos restaurantes. O anfitrião é muito prestativo e de fácil comunicação."</p>
+      <div class="rv-author">
+        <div class="rv-avatar">L</div>
+        <div><div class="rv-name">Leonardo</div><div class="rv-city">Minas Gerais, MG</div></div>
+      </div>
+    </div>
+    <div class="rv-card reveal">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-quote">"Este foi um dos 3 MELHORES airbnbs em que eu fiquei e eu fico em airbnbs. Obrigado Denilson e equipe, vocês foram incríveis. Espero para ver você novamente!"</p>
+      <div class="rv-author">
+        <div class="rv-avatar">H</div>
+        <div><div class="rv-name">Henrique</div><div class="rv-city">Miami, Florida · EUA</div></div>
+      </div>
+    </div>
+    <div class="rv-card reveal">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-quote">"Denilson, Cinara e Christian foram anfitriões impecáveis. O apartamento é maravilhoso, muito bem decorado e equipado. O edifício está em uma das melhores regiões de Florianópolis. Bons restaurantes e cafés estão a poucos metros. Valeu muito a pena! Voltarei sempre!"</p>
+      <div class="rv-author">
+        <div class="rv-avatar">F</div>
+        <div><div class="rv-name">Fabio</div><div class="rv-city">Porto Alegre, RS</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPERHOST -->
+<section class="sh-section">
+  <div class="sh-inner">
+    <div class="sh-left reveal-left">
+      <div class="section-eyebrow"><span></span>O Anfitrião</div>
+      <h2 class="section-title">DENILSON<br><span class="teal">BELCHOR</span></h2>
+      <p style="font-size:0.95rem;font-weight:300;line-height:1.85;color:var(--muted);margin:1.5rem 0 2rem">
+        Superhost Airbnb há 8 anos, com nota média de 4,98 e mais de 126 avaliações.
+        Gestão profissional, família presente e atenção a cada detalhe da sua estadia.
+        Seu superpoder? Garantir sua tranquilidade.
+      </p>
+      <a class="btn-glow" href="https://www.airbnb.com.br/rooms/42202316" target="_blank" rel="noopener">↗ Reservar agora</a>
+    </div>
+    <div class="sh-right reveal">
+      <div class="sh-metric">
+        <div class="val">4,98</div>
+        <div class="lbl">Nota média geral</div>
+      </div>
+      <div class="sh-metric">
+        <div class="val">126+</div>
+        <div class="lbl">Avaliações totais</div>
+      </div>
+      <div class="sh-metric">
+        <div class="val">8</div>
+        <div class="lbl">Anos como Superhost</div>
+      </div>
+      <div class="sh-metric">
+        <div class="val">Top 5%</div>
+        <div class="lbl">Global Airbnb</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA -->
+<section class="map-section" id="localizacao">
+  <div class="reveal">
+    <div class="section-eyebrow"><span></span>Localização</div>
+    <h2 class="section-title">CENTRO DE<br><span class="teal">FLORIANÓPOLIS</span></h2>
+  </div>
+  <div class="map-layout">
+    <div class="map-frame reveal">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3536.1!2d-48.549!3d-27.591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x952737241ee0e4b5%3A0xb09e7cd0c95e9c25!2sPatio%20Milano!5e0!3m2!1spt-BR!2sbr!4v1"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Pátio Milano Florianópolis">
+      </iframe>
+    </div>
+    <div class="map-sidebar reveal">
+      <div class="poi-card">
+        <div class="poi-icon">🏖️</div>
+        <div><div class="poi-name">Beira-Mar Norte</div><div class="poi-dist">5 min a pé</div></div>
+      </div>
+      <div class="poi-card">
+        <div class="poi-icon">🛍️</div>
+        <div><div class="poi-name">Beiramar Shopping</div><div class="poi-dist">450 metros</div></div>
+      </div>
+      <div class="poi-card">
+        <div class="poi-icon">🌉</div>
+        <div><div class="poi-name">Ponte Hercílio Luz</div><div class="poi-dist">2,8 km</div></div>
+      </div>
+      <div class="poi-card">
+        <div class="poi-icon">✈️</div>
+        <div><div class="poi-name">Aeroporto Internacional</div><div class="poi-dist">18 km</div></div>
+      </div>
+      <div class="poi-card">
+        <div class="poi-icon">🍽️</div>
+        <div><div class="poi-name">Mercadoteca Food Hall</div><div class="poi-dist">Acesso direto</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="cta-eyebrow reveal">Reserve agora · Disponibilidade limitada</div>
+  <h2 class="cta-title reveal">
+    <span class="teal-grad">SUA PRÓXIMA</span><br>
+    <span class="outline">ESTADIA EM</span><br>
+    <span class="teal-grad">FLORIANÓPOLIS</span>
+  </h2>
+  <p class="cta-sub reveal">Studio Premium · Pátio Milano · Nota 4,99 · Top 5% Airbnb · Superhost</p>
+  <div class="cta-actions reveal">
+    <a class="btn-glow" href="https://www.airbnb.com.br/rooms/42202316" target="_blank" rel="noopener">
+      ↗ Reservar no Airbnb
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="f-logo">PÁTIO <span class="t">MILANO</span> · STUDIO</span>
+  <span class="f-copy">Florianópolis, SC · Brasil</span>
+  <a class="f-link" href="https://www.airbnb.com.br/rooms/42202316" target="_blank" rel="noopener">Ver no Airbnb ↗</a>
+</footer>
+
+<script>
+// Custom cursor
+const cur = document.getElementById('cur');
+const ring = document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='20px';cur.style.height='20px';ring.style.width='60px';ring.style.height='60px'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='12px';cur.style.height='12px';ring.style.width='36px';ring.style.height='36px'});
+});
+
+// Reveal on scroll
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('vis'),i*90);
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
